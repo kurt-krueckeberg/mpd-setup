@@ -42,11 +42,11 @@ https://gitlab.com/sonida/mpd-configure/-/issues/39). Install it this
 way:
 
 ```bash
-[#anchor]####git clone git@gitlab.com:sonida/mpd-configure.git
+$ git clone git@gitlab.com:sonida/mpd-configure.git
 
-[#anchor-1]####cd mpd-configure
+$ cd mpd-configure
 
-[#anchor-2]####git submodule update --init –recursive
+$ Sgit submodule update --init –recursive
 ```
 
 === MPD Forum
