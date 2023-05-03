@@ -86,17 +86,18 @@ $ Sgit submodule update --init –recursive
 
 === Create a Permanent Index for the Sound Card
 
-According to https://notes.maxie.xyz/audio/bit-perfect-hi-res-audio-player-on-linux-with-mpd.html#permanent-index-value-for-the-sound-card-recommended[Permanent index value for the sound card (Recommended)]
+According to https://notes.maxie.xyz/audio/bit-perfect-hi-res-audio-player-on-linux-with-mpd.html#permanent-index-value-for-the-sound-card-recommended[Permanent index value for the sound card (Recommended)], which may be dated (but still work):
 
 "Every time you connect your DAC to your computer, the Generic USB Audio Driver (the snd-usb-audio kernel module) assigns an index 
 value to the DAC's sound card. You will need to specify this value in the output configration of MPD. When you have multiple audio devices and you connect and disconnect them often, the snd-usb-audio module might assign different index values for the same device each time you reconnect it. To make sure that an MPD output (and you can configure multiple outputs!) is always using the same device, you might want to assign permanent index values to each device.
 
 To assign permanent index values, you need to set them in the snd-usb-audio module options."
 
-But see alternate way here: https://superuser.com/questions/626606/how-to-make-alsa-pick-a-preferred-sound-device-automatically
+See this other technique: https://superuser.com/questions/626606/how-to-make-alsa-pick-a-preferred-sound-device-automatically
 
-ALSA wiki: https://www.alsa-project.org/wiki/Documentation
-See: https://alsa.opensrc.org/MultipleCards#The_newer_.22slots.3D.22_method 
+See also:
+* ALSA wiki: https://www.alsa-project.org/wiki/Documentation
+* https://alsa.opensrc.org/MultipleCards#The_newer_.22slots.3D.22_method 
 
 === MPD Forum
 
