@@ -65,11 +65,8 @@ $ mkdir ~/.config/mpd/playlists
 
 === Bit-perfect MPD Configuration Utility
 
-The https://gitlab.com/sonida/mpd-configure[mpd-configure] tool creates
-a MPD configuration optimized for
-https://www.musicpd.org/doc/user/advanced_usage.html#bit_perfect[bit
-perfect] audio playback, without any resampling or conversion, using the
-ALSA interface hardware address (hw:x,y).
+The https://gitlab.com/sonida/mpd-configure[mpd-configure] tool creates a MPD configuration optimized for
+https://www.musicpd.org/doc/user/advanced_usage.html#bit_perfect[bit perfect] audio playback, without any resampling or conversion, using the ALSA interface hardware address 'hw:x,y`.
 
 The *mpd-configure* script requires the *alsa-capabilities* script to be
 in ./helpers.
@@ -86,6 +83,20 @@ $ cd mpd-configure
 
 $ Sgit submodule update --init –recursive
 ```
+
+=== Create a Permanent Index for the Sound Card
+
+According to https://notes.maxie.xyz/audio/bit-perfect-hi-res-audio-player-on-linux-with-mpd.html#permanent-index-value-for-the-sound-card-recommended[Permanent index value for the sound card (Recommended)]
+
+"Every time you connect your DAC to your computer, the Generic USB Audio Driver (the snd-usb-audio kernel module) assigns an index 
+value to the DAC's sound card. You will need to specify this value in the output configration of MPD. When you have multiple audio devices and you connect and disconnect them often, the snd-usb-audio module might assign different index values for the same device each time you reconnect it. To make sure that an MPD output (and you can configure multiple outputs!) is always using the same device, you might want to assign permanent index values to each device.
+
+To assign permanent index values, you need to set them in the snd-usb-audio module options."
+
+But see alternate way here: https://superuser.com/questions/626606/how-to-make-alsa-pick-a-preferred-sound-device-automatically
+
+ALSA wiki: https://www.alsa-project.org/wiki/Documentation
+See: https://alsa.opensrc.org/MultipleCards#The_newer_.22slots.3D.22_method 
 
 === MPD Forum
 
