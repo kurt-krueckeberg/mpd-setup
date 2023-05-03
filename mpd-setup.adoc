@@ -1,4 +1,11 @@
-== MPD Setup
+== MPD
+
+=== User's Manual
+
+MPD https://mpd.readthedocs.io/en/stable/user.html[User's Manual]
+
+
+=== General Setup
 
 You can have both a system-wide setup and per-user setups. The system-wide configuration is in `/etc/mpd.conf`, and the user config is in
 `~/.config/mpd`/. You can optionally specify a different configure file when starting mpd from the command line:
