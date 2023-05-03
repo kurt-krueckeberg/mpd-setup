@@ -2,7 +2,7 @@
 
 === ToDo
 
-I think after each reboot that the hardware settings can changes for `aplay -l`. I may need to create a fixed index for, say, the X4 adapter.
+I think after each reboot that the hardware settings like thhose displayed for `aplay -l` change. Therefore I may need to create a fixed index for, say, the X4 adapter.
 
 === User's Manual
 
