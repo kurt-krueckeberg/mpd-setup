@@ -5,7 +5,31 @@
 I think after each reboot that the hardware settings like thhose displayed for `aplay -l` change. Therefore I may need to create a fixed index for, say, the X4 adapter.
 See https://notes.maxie.xyz/audio/bit-perfect-hi-res-audio-player-on-linux-with-mpd.html#permanent-index-value-for-the-sound-card-recommended[Permanent index value for the sound card (Recommended)]
 
-To test bitreate, see: https://www.24bit96.com/hifi-music-server/bitperfect-linux-with-mpd.htmlTesting.
+To test bit rate, see: https://www.24bit96.com/hifi-music-server/bitperfect-linux-with-mpd.htmlTesting.
+
+=== Links
+
+* https://wiki.archlinux.org/title/Music_Player_Daemon[MPD Guide to all
+config options | Arch] ← Excellent introduction
++
+* https://mpd.fandom.com/wiki/Configuration[Configuring MPD] ← good
+thorough overview. Has link to Linux Audio Explained.
++
+* https://www.addictivetips.com/ubuntu-linux-tips/set-up-music-player-daemon-on-linux/[How To Set Up Music Player Daemon On Linux] ← Shows web access to mpd.
+* https://notes.maxie.xyz/audio/bit-perfect-hi-res-audio-player-on-linux-with-mpd.html[Bit-Perfect Hi-Res Audio Player on Linux with MPD] ← Good. Shows hardware and mpd
+setup. Goes into details.
++
+* https://www.24bit96.com/hifi-music-server/bitperfect-linux-with-mpd.html[Bitperfect MPD with ALSA for a Linux Audio PC System] ← Explains how to confirm
+bitrate
++
+* https://www.youtube.com/watch?v=hksM3xqOU4w[My music setup with mpd, ncmpcpp | Music server in Linux | How to configure mp] ←
++
+* https://guillaumeplayground.net/mele-dac-mpd-the-perfect-bit-perfect/[Mele+ DAC + MPD => the perfect bit-perfect setup]
+
+* https://www.youtube.com/watch?v=hW8W6VHskP8[Configure Music Player Daemon and ncmpcpp]
++
+* https://www.youtube.com/watch?v=_GLOKTd-8tA&t=75s[Ncmpcpp: The Best MPD Client With The Worst Name]
+
 
 === User's Manual
 
