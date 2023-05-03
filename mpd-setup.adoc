@@ -1,12 +1,13 @@
 == MPD Setup
 
 You can have both a system-wide setup and per-user setups. The system-wide configuration is in `/etc/mpd.conf`, and the user config is in
-`~/.config/mpd`/. You can optionally specify a different configure file
-when starting mpd from the command line:
+`~/.config/mpd`/. You can optionally specify a different configure file when starting mpd from the command line:
 
 ```bash
 $ mpd custom-mpd-conhfig-file
 ```
+
+If none is given, then `~/.config/mpd/mpd.confg` is used.
 
 MPD’s settings are explained on the
 https://wiki.archlinux.org/title/Music_Player_Daemon#Audio_configuration[Arch website]. You can begin with the example settings file:
