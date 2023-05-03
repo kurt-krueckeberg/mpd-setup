@@ -3,6 +3,9 @@
 === ToDo
 
 I think after each reboot that the hardware settings like thhose displayed for `aplay -l` change. Therefore I may need to create a fixed index for, say, the X4 adapter.
+See https://notes.maxie.xyz/audio/bit-perfect-hi-res-audio-player-on-linux-with-mpd.html#permanent-index-value-for-the-sound-card-recommended[Permanent index value for the sound card (Recommended)]
+
+To test bitreate, see: https://www.24bit96.com/hifi-music-server/bitperfect-linux-with-mpd.htmlTesting.
 
 === User's Manual
 
