@@ -1,0 +1,53 @@
+== MPD Setup
+
+You can have both a system-wide setup and per-user setups. The system-wide configuration is in `/etc/mpd.conf`, and the user config is in
+`~/.config/mpd`/. You can optionally specify a different configure file
+when starting mpd from the command line:
+
+```bash
+$ mpd custom-mpd-conhfig-file
+```
+
+MPD’s settings are explained on the
+https://wiki.archlinux.org/title/Music_Player_Daemon#Audio_configuration[Arch website]. You can begin with the example settings file:
+
+```bash
+$ mkdir ~/.config/mpd
+
+$ cp /usr/share/doc/mpd/mpdconf.example ~/.config/mpd/mpd.conf
+```
+
+If playlists are enabled in the configuration, the specified playlist
+directory must be created:
+
+```bash
+$ mkdir ~/.config/mpd/playlists
+```
+
+=== Bit-perfect MPD Configuration Utility
+
+The https://gitlab.com/sonida/mpd-configure[mpd-configure] tool creates
+a MPD configuration optimized for
+https://www.musicpd.org/doc/user/advanced_usage.html#bit_perfect[bit
+perfect] audio playback, without any resampling or conversion, using the
+ALSA interface hardware address (hw:x,y).
+
+The *mpd-configure* script requires the *alsa-capabilities* script to be
+in ./helpers.
+
+NOTE: The alsa-capabilites bash script should not be independently
+installed. See the comments by Quex Quex at
+https://gitlab.com/sonida/mpd-configure/-/issues/39). Install it this
+way:
+
+```bash
+[#anchor]####git clone git@gitlab.com:sonida/mpd-configure.git
+
+[#anchor-1]####cd mpd-configure
+
+[#anchor-2]####git submodule update --init –recursive
+```
+
+=== MPD Forum
+
+<https://github.com/MusicPlayerDaemon/MPD/discussions>
