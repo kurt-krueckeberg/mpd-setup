@@ -96,6 +96,7 @@ To assign permanent index values, you need to set them in the snd-usb-audio modu
 See this other technique: https://superuser.com/questions/626606/how-to-make-alsa-pick-a-preferred-sound-device-automatically
 
 See also:
+
 * ALSA wiki: https://www.alsa-project.org/wiki/Documentation
 * https://alsa.opensrc.org/MultipleCards#The_newer_.22slots.3D.22_method 
 
