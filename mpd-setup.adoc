@@ -93,11 +93,45 @@ value to the DAC's sound card. You will need to specify this value in the output
 
 To assign permanent index values, you need to set them in the snd-usb-audio module options."
 
-See this other technique: https://superuser.com/questions/626606/how-to-make-alsa-pick-a-preferred-sound-device-automatically
+To do this, run `lsusb` and note the **ID**s:
+
+```bash Bus 006 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 002 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 005 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 003 Device 005: ID 041e:3278 Creative Technology, Ltd Sound Blaster X4
+Bus 003 Device 004: ID b58e:9e84 Blue Microphones Yeti Stereo Microphone
+Bus 003 Device 003: ID 3297:1969 ZSA Technology Labs Moonlander Mark I
+Bus 003 Device 007: ID 0403:6014 Future Technology Devices International, Ltd FT232H Single HS USB-UART/FIFO IC
+Bus 003 Device 008: ID 0424:4041 Microchip Technology, Inc. (formerly SMSC) Hub and media card controller
+Bus 003 Device 006: ID 0424:2640 Microchip Technology, Inc. (formerly SMSC) USB 2.0 Hub
+Bus 003 Device 002: ID 056e:00fd Elecom Co., Ltd M-XT4DRBK EX-G Wireless Optical TrackBall
+Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 004 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+```
+
+The first id is the Vendor id or vid and the second id is the Product id or pid. For the **Sound Blaster X4**, the vid is `041e` and  the pid is `3278`. The vid and pid for the Yeti microphone are `b58e` and `9e84`. We can assign their sound card indexes as **1** and **2** by adding this line in `/etc/modprobe.d/alsabase.conf`:
+
+```bash
+options snd-usb-audio index=1,2 vid=0x041e,0xb58e pid=0x3278,0x9e84
+```
+
+Empirically I found the line above had to come first before these other USB sound card entries, which can probably be eliminated (if the X4 and/or Yeti are kept plugged in):
+
+```bash
+options snd-usb-caiaq index=-2
+options snd-usb-ua101 index=-2
+options snd-usb-us122l index=-2
+options snd-usb-usx2y index=-2
+```
+
+
+Another way of achieving this is found at: https://superuser.com/questions/626606/how-to-make-alsa-pick-a-preferred-sound-device-automatically
 
 See also:
 
-* ALSA wiki: https://www.alsa-project.org/wiki/Documentation
+* https://www.alsa-project.org/wiki/Documentation
+* https://wiki.archlinux.org/title/Advanced_Linux_Sound_Architecture#Set_the_default_sound_card
 * https://alsa.opensrc.org/MultipleCards#The_newer_.22slots.3D.22_method 
 
 === MPD Forum
