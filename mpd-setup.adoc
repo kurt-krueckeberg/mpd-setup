@@ -71,7 +71,7 @@ https://www.musicpd.org/doc/user/advanced_usage.html#bit_perfect[bit perfect] au
 The *mpd-configure* script requires the *alsa-capabilities* script to be
 in ./helpers.
 
-NOTE: The alsa-capabilites bash script should not be independently
+NOTE: The `alsa-capabilites` bash script should not be independently
 installed. See the comments by Quex Quex at
 https://gitlab.com/sonida/mpd-configure/-/issues/39). Install it this
 way:
