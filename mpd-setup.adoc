@@ -2,12 +2,13 @@
 
 === To Do
 
-I think after each reboot that the hardware settings like thhose displayed for `aplay -l` change. Therefore I may need to create a fixed index for, say, the X4 adapter.
-See https://notes.maxie.xyz/audio/bit-perfect-hi-res-audio-player-on-linux-with-mpd.html#permanent-index-value-for-the-sound-card-recommended[Permanent index value for the sound card (Recommended)]
-
 To test bit rate, see: https://www.24bit96.com/hifi-music-server/bitperfect-linux-with-mpd.htmlTesting.
 
-=== Links
+=== Official User's Manual
+
+MPD https://mpd.readthedocs.io/en/stable/user.html[User's Manual]
+
+=== MPD Setup and Usage Links
 
 * https://wiki.archlinux.org/title/Music_Player_Daemon[MPD Guide to all
 config options | Arch] ← Excellent introduction
@@ -29,11 +30,6 @@ bitrate
 * https://www.youtube.com/watch?v=hW8W6VHskP8[Configure Music Player Daemon and ncmpcpp]
 +
 * https://www.youtube.com/watch?v=_GLOKTd-8tA&t=75s[Ncmpcpp: The Best MPD Client With The Worst Name]
-
-
-=== User's Manual
-
-MPD https://mpd.readthedocs.io/en/stable/user.html[User's Manual]
 
 
 === General Setup
@@ -68,8 +64,8 @@ $ mkdir ~/.config/mpd/playlists
 The https://gitlab.com/sonida/mpd-configure[mpd-configure] tool creates a MPD configuration optimized for
 https://www.musicpd.org/doc/user/advanced_usage.html#bit_perfect[bit perfect] audio playback, without any resampling or conversion, using the ALSA interface hardware address 'hw:x,y`.
 
-The *mpd-configure* script requires the *alsa-capabilities* script to be
-in ./helpers.
+The `mpd-configure` script requires the `alsa-capabilities` script to be
+in `./helpers`.
 
 NOTE: The `alsa-capabilites` bash script should not be independently
 installed. See the comments by Quex Quex at
@@ -84,7 +80,7 @@ $ cd mpd-configure
 $ Sgit submodule update --init –recursive
 ```
 
-=== Create a Permanent Index for the Sound Card
+=== Creating a Permanent Index for the Sound Card
 
 According to https://notes.maxie.xyz/audio/bit-perfect-hi-res-audio-player-on-linux-with-mpd.html#permanent-index-value-for-the-sound-card-recommended[Permanent index value for the sound card (Recommended)], which may be dated (but still work):
 
