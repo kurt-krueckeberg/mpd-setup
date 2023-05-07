@@ -1,36 +1,12 @@
-== MPD
+ymus== MPD
 
-=== To Do
+=== Testing Bit Rate of Current Configuration
 
 To test bit rate, see: https://www.24bit96.com/hifi-music-server/bitperfect-linux-with-mpd.htmlTesting.
 
 === Official User's Manual
 
 MPD https://mpd.readthedocs.io/en/stable/user.html[User's Manual]
-
-=== MPD Setup and Usage Links
-
-* https://wiki.archlinux.org/title/Music_Player_Daemon[MPD Guide to all
-config options | Arch] ← Excellent introduction
-+
-* https://mpd.fandom.com/wiki/Configuration[Configuring MPD] ← good
-thorough overview. Has link to Linux Audio Explained.
-+
-* https://www.addictivetips.com/ubuntu-linux-tips/set-up-music-player-daemon-on-linux/[How To Set Up Music Player Daemon On Linux] ← Shows web access to mpd.
-* https://notes.maxie.xyz/audio/bit-perfect-hi-res-audio-player-on-linux-with-mpd.html[Bit-Perfect Hi-Res Audio Player on Linux with MPD] ← Good. Shows hardware and mpd
-setup. Goes into details.
-+
-* https://www.24bit96.com/hifi-music-server/bitperfect-linux-with-mpd.html[Bitperfect MPD with ALSA for a Linux Audio PC System] ← Explains how to confirm
-bitrate
-+
-* https://www.youtube.com/watch?v=hksM3xqOU4w[My music setup with mpd, ncmpcpp | Music server in Linux | How to configure mp] ←
-+
-* https://guillaumeplayground.net/mele-dac-mpd-the-perfect-bit-perfect/[Mele+ DAC + MPD => the perfect bit-perfect setup]
-
-* https://www.youtube.com/watch?v=hW8W6VHskP8[Configure Music Player Daemon and ncmpcpp]
-+
-* https://www.youtube.com/watch?v=_GLOKTd-8tA&t=75s[Ncmpcpp: The Best MPD Client With The Worst Name]
-
 
 === General Setup
 
@@ -82,37 +58,48 @@ $ Sgit submodule update --init –recursive
 
 === Creating a Permanent Index for the Sound Card
 
-According to https://notes.maxie.xyz/audio/bit-perfect-hi-res-audio-player-on-linux-with-mpd.html#permanent-index-value-for-the-sound-card-recommended[Permanent index value for the sound card (Recommended)], which may be dated (but still work):
+You should create a https://notes.maxie.xyz/audio/bit-perfect-hi-res-audio-player-on-linux-with-mpd.html#permanent-index-value-for-the-sound-card-recommended[permanent index value for the sound card] section of
+https://notes.maxie.xyz/audio/bit-perfect-hi-res-audio-player-on-linux-with-mpd.html[Bit-Perfect Hi-Res Audio Player on Linux with MPD] because as it explains:
 
-"Every time you connect your DAC to your computer, the Generic USB Audio Driver (the snd-usb-audio kernel module) assigns an index 
-value to the DAC's sound card. You will need to specify this value in the output configration of MPD. When you have multiple audio devices and you connect and disconnect them often, the snd-usb-audio module might assign different index values for the same device each time you reconnect it. To make sure that an MPD output (and you can configure multiple outputs!) is always using the same device, you might want to assign permanent index values to each device.
+"Every time you connect your DAC to your computer, the generic USB audio driver `snd-usb-audio` assigns an index 
+value to the DAC's sound card. You need to specify this value in the output configuration of MPD. When you have multiple audio devices and you connect and disconnect them often, the `snd-usb-audio` module might assign different index values for the same device each time you reconnect it. To make sure that an MPD output (and you can configure multiple outputs) is always using the same device, you want to assign permanent index values to each device.
 
-To assign permanent index values, you need to set them in the snd-usb-audio module options."
+To assign permanent index values, you need to set them in the `snd-usb-audio`` module options."
 
-To do this, run `lsusb` and note the **ID**s:
+==== Steps
 
-```bash Bus 006 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+. Run `lsusb` and note the **ID**s:
+
+```bash
+kurt@kurt-Airtop3:~$ lsusb
+Bus 006 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
 Bus 002 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 Bus 005 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
 Bus 003 Device 005: ID 041e:3278 Creative Technology, Ltd Sound Blaster X4
 Bus 003 Device 004: ID b58e:9e84 Blue Microphones Yeti Stereo Microphone
-Bus 003 Device 003: ID 3297:1969 ZSA Technology Labs Moonlander Mark I
+Bus 003 Device 003: ID 056e:00fd Elecom Co., Ltd M-XT4DRBK EX-G Wireless Optical TrackBall
 Bus 003 Device 007: ID 0403:6014 Future Technology Devices International, Ltd FT232H Single HS USB-UART/FIFO IC
 Bus 003 Device 008: ID 0424:4041 Microchip Technology, Inc. (formerly SMSC) Hub and media card controller
 Bus 003 Device 006: ID 0424:2640 Microchip Technology, Inc. (formerly SMSC) USB 2.0 Hub
-Bus 003 Device 002: ID 056e:00fd Elecom Co., Ltd M-XT4DRBK EX-G Wireless Optical TrackBall
+Bus 003 Device 002: ID 046d:c52b Logitech, Inc. Unifying Receiver
 Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 Bus 004 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
 Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+
 ```
 
-The first id is the Vendor id or vid and the second id is the Product id or pid. For the **Sound Blaster X4**, the vid is `041e` and  the pid is `3278`. The vid and pid for the Yeti microphone are `b58e` and `9e84`. We can assign their sound card indexes as **1** and **2** by adding this line in `/etc/modprobe.d/alsabase.conf`:
+The first **id** is the vendor id or *vid* and the second id is the product id or **pid**. 
+
+* For the **Creative Technology, Ltd Sound Blaster X4**: `vid = 0x041e` and  `pid = 0x3278`. 
+* For the Yeti microphone: `vid = 0xb58e` and `pid = 0x9e84`. 
+
+Now we can assign their sound card indexes as **1** and **2** by adding this line in `/etc/modprobe.d/alsabase.conf`:
 
 ```bash
 options snd-usb-audio index=1,2 vid=0x041e,0xb58e pid=0x3278,0x9e84
 ```
 
-Empirically I found the line above had to come first before these other USB sound card entries, which can probably be eliminated (if the X4 and/or Yeti are kept plugged in):
+Comment: Empirically I found the line above had to come first before these other USB sound card entries, which can probably be eliminated (if the X4 and/or Yeti are kept plugged in):
 
 ```bash
 options snd-usb-caiaq index=-2
@@ -121,14 +108,42 @@ options snd-usb-us122l index=-2
 options snd-usb-usx2y index=-2
 ```
 
-
-Another way of achieving this is found at: https://superuser.com/questions/626606/how-to-make-alsa-pick-a-preferred-sound-device-automatically
-
 See also:
 
 * https://www.alsa-project.org/wiki/Documentation
 * https://wiki.archlinux.org/title/Advanced_Linux_Sound_Architecture#Set_the_default_sound_card
-* https://alsa.opensrc.org/MultipleCards#The_newer_.22slots.3D.22_method 
+* https://alsa.opensrc.org/MultipleCards#The_newer_.22slots.3D.22_method
+
+=== Configuring Client Connections and Inputs
+
+todo: Read the overview articles below.
+
+And read about client connections config see; file:///usr/share/doc/mpd/html/user.html#client-connections
+
+==== MPD Setup and Usage Links
+
+* file:///usr/share/doc/mpd/html/user.html[MPD User Manual]
+
+* https://mpd.fandom.com/wiki/Configuration[Configuring MPD] ← good thorough overview. Has link to Linux Audio Explained.
+
+* https://www.addictivetips.com/ubuntu-linux-tips/set-up-music-player-daemon-on-linux/[How To Set Up Music Player Daemon On Linux] ← Shows web access to mpd.
+
+* https://notes.maxie.xyz/audio/bit-perfect-hi-res-audio-player-on-linux-with-mpd.html[Bit-Perfect Hi-Res Audio Player on Linux with MPD] ← Good. Shows hardware and mpd
+setup. Goes into details.
++
+* https://www.24bit96.com/hifi-music-server/bitperfect-linux-with-mpd.html[Bitperfect MPD with ALSA for a Linux Audio PC System] ← Explains how to confirm bitrate
+* https://guillaumeplayground.net/mele-dac-mpd-the-perfect-bit-perfect/[Mele+ DAC + MPD => the perfect bit-perfect setup]
+
+* https://wiki.archlinux.org/title/Music_Player_Daemon[MPD Guide to all config options | Arch] ← Excellent introduction
+
+
+=== MPD Clients
+
+https://mpd.fandom.com/wiki/Clients
+
+* https://www.youtube.com/watch?v=hW8W6VHskP8[Configure Music Player Daemon and ncmpcpp]
+* https://www.youtube.com/watch?v=_GLOKTd-8tA&t=75s[Ncmpcpp: The Best MPD Client With The Worst Name]
+* https://www.youtube.com/watch?v=hksM3xqOU4w[My music setup with mpd, ncmpcpp | Music server in Linux | How to configure mp]
 
 === MPD Forum
 
