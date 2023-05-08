@@ -1,18 +1,12 @@
-:stylesheet: /home/kurt/asciidoc-skins/css/readable.css
+:stylesheet: /home/kurt/asciidoc-skins/css/material-green.css
 
 = MPD and Bit-Perfect Audio Setup
 
 == Testing Bit Rate of Current Configuration
 
-To test bit rate, yo ca do:
+To test the bit rate, you can do `sudo cat /proc/asound/card0/pcm0p/sub0/hw_params`, if `card0` is your sound card; or `sudo cat /proc/asound/card1/pcm0p/sub0/hw_params` if `card1` is your sound card.
 
-```bash
-sudo cat /proc/asound/card0/pcm0p/sub0/hw_params
-```
-
-Referencee: https://www.24bit96.com/hifi-music-server/bitperfect-linux-with-mpd.html.
-
-== Official User's Manual
+== MPD User's Manual
 
 MPD https://mpd.readthedocs.io/en/stable/user.html[User's Manual]
 
@@ -27,8 +21,8 @@ $ mpd custom-mpd-conhfig-file
 
 If none is given, then `~/.config/mpd/mpd.confg` is used.
 
-MPD’s settings are explained on the
-https://wiki.archlinux.org/title/Music_Player_Daemon#Audio_configuration[Arch website]. You can begin with the example settings file:
+A good overview of MPD’s settings is available on the
+https://wiki.archlinux.org/title/Music_Player_Daemon#Audio_configuration[Arch website]. You can work from thee example settings file:
 
 ```bash
 $ mkdir ~/.config/mpd
@@ -36,8 +30,7 @@ $ mkdir ~/.config/mpd
 $ cp /usr/share/doc/mpd/mpdconf.example ~/.config/mpd/mpd.conf
 ```
 
-If playlists are enabled in the configuration, the specified playlist
-directory must be created:
+If playlists are enabled in the configuration, the specified playlist directory must be created:
 
 ```bash
 $ mkdir ~/.config/mpd/playlists
