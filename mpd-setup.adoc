@@ -1,3 +1,5 @@
+:stylesheet: /home/kurt/asciidoc-skins/css/material-teal.css
+
 = MPD and Bit-Perfect Audio Setup
 
 == Testing Bit Rate of Current Configuration
