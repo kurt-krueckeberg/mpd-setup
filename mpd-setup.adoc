@@ -2,7 +2,13 @@
 
 == Testing Bit Rate of Current Configuration
 
-To test bit rate, see: https://www.24bit96.com/hifi-music-server/bitperfect-linux-with-mpd.html.
+To test bit rate, yo ca do:
+
+```bash
+sudo cat /proc/asound/card0/pcm0p/sub0/hw_params
+```
+
+Referencee: https://www.24bit96.com/hifi-music-server/bitperfect-linux-with-mpd.html.
 
 == Official User's Manual
 

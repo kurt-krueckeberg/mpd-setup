@@ -445,7 +445,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_testing_bit_rate_of_current_configuration">Testing Bit Rate of Current Configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To test bit rate, see: <a href="https://www.24bit96.com/hifi-music-server/bitperfect-linux-with-mpd.html" class="bare">https://www.24bit96.com/hifi-music-server/bitperfect-linux-with-mpd.html</a>.</p>
+<p>To test bit rate, yo ca do:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo cat /proc/asound/card0/pcm0p/sub0/hw_params</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Referencee: <a href="https://www.24bit96.com/hifi-music-server/bitperfect-linux-with-mpd.html" class="bare">https://www.24bit96.com/hifi-music-server/bitperfect-linux-with-mpd.html</a>.</p>
 </div>
 </div>
 </div>
@@ -685,7 +693,7 @@ setup. Goes into details.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-05-08 15:13:24 -0400
+Last updated 2023-05-08 15:15:04 -0400
 </div>
 </div>
 </body>
