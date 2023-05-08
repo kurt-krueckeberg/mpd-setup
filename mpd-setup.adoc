@@ -140,7 +140,9 @@ setup. Goes into details.
 
 === MPD Clients
 
-https://mpd.fandom.com/wiki/Clients
+https://mpd.fandom.com/wiki/Clients[List of Clients] from the MPD website.
+
+* http://ompd.pl/[O!MPD] is a PHP-base client.
 
 * https://www.youtube.com/watch?v=hW8W6VHskP8[Configure Music Player Daemon and ncmpcpp]
 * https://www.youtube.com/watch?v=_GLOKTd-8tA&t=75s[Ncmpcpp: The Best MPD Client With The Worst Name]
