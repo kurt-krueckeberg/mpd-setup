@@ -2,7 +2,7 @@
 
 == Testing Bit Rate of Current Configuration
 
-To test bit rate, see: https://www.24bit96.com/hifi-music-server/bitperfect-linux-with-mpd.htmlTesting.
+To test bit rate, see: https://www.24bit96.com/hifi-music-server/bitperfect-linux-with-mpd.html.
 
 == Official User's Manual
 
