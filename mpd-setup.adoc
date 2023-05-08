@@ -1,4 +1,4 @@
-:stylesheet: /home/kurt/asciidoc-skins/css/material-teal.css
+:stylesheet: /home/kurt/asciidoc-skins/css/readable.css
 
 = MPD and Bit-Perfect Audio Setup
 
