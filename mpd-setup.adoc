@@ -1,14 +1,14 @@
-ymus== MPD
+= MPD and Bit-Perfect Audio Setup
 
-=== Testing Bit Rate of Current Configuration
+== Testing Bit Rate of Current Configuration
 
 To test bit rate, see: https://www.24bit96.com/hifi-music-server/bitperfect-linux-with-mpd.htmlTesting.
 
-=== Official User's Manual
+== Official User's Manual
 
 MPD https://mpd.readthedocs.io/en/stable/user.html[User's Manual]
 
-=== General Setup
+== General Setup
 
 You can have both a system-wide setup and per-user setups. The system-wide configuration is in `/etc/mpd.conf`, and the user config is in
 `~/.config/mpd`/. You can optionally specify a different configure file when starting mpd from the command line:
