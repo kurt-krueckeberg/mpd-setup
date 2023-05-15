@@ -12,23 +12,28 @@ MPD https://mpd.readthedocs.io/en/stable/user.html[User's Manual]
 
 == General Setup
 
-You can have both a system-wide setup and per-user setups. The system-wide configuration is in `/etc/mpd.conf`, and the user config is in
-`~/.config/mpd`/. You can optionally specify a different configure file when starting mpd from the command line:
+=== Default Config File Locations
+
+You can have both a system-wide setup and per-user setups. The system-wide configuration is `/etc/mpd.conf`, and the user config is `~/.config/mpd`/. You can optionally specify a different configure file when starting mpd from the command line:
 
 ```bash
-$ mpd custom-mpd-conhfig-file
+$ mpd custom-mpd-config-file
 ```
 
 If none is given, then `~/.config/mpd/mpd.confg` is used.
 
+=== The Example Config File
+
 A good overview of MPD’s settings is available on the
-https://wiki.archlinux.org/title/Music_Player_Daemon#Audio_configuration[Arch website]. You can work from thee example settings file:
+https://wiki.archlinux.org/title/Music_Player_Daemon#Audio_configuration[Arch website]. You can start with the example config settings file:
 
 ```bash
 $ mkdir ~/.config/mpd
 
 $ cp /usr/share/doc/mpd/mpdconf.example ~/.config/mpd/mpd.conf
 ```
+
+=== Playlists Directory
 
 If playlists are enabled in the configuration, the specified playlist directory must be created:
 
@@ -59,59 +64,27 @@ $ Sgit submodule update --init –recursive
 
 === Creating a Permanent Index for the Sound Card
 
-You should create a https://notes.maxie.xyz/audio/bit-perfect-hi-res-audio-player-on-linux-with-mpd.html#permanent-index-value-for-the-sound-card-recommended[permanent index value for the sound card] section of
-https://notes.maxie.xyz/audio/bit-perfect-hi-res-audio-player-on-linux-with-mpd.html[Bit-Perfect Hi-Res Audio Player on Linux with MPD] because as it explains:
+The steps given in https://notes.maxie.xyz/audio/bit-perfect-hi-res-audio-player-on-linux-with-mpd.html#permanent-index-value-for-the-sound-card-recommended[permanent index value for the sound card] section of
+https://notes.maxie.xyz/audio/bit-perfect-hi-res-audio-player-on-linux-with-mpd.html[Bit-Perfect Hi-Res Audio Player on Linux with MPD] didn't work for me.
 
-"Every time you connect your DAC to your computer, the generic USB audio driver `snd-usb-audio` assigns an index 
-value to the DAC's sound card. You need to specify this value in the output configuration of MPD. When you have multiple audio devices and you connect and disconnect them often, the `snd-usb-audio` module might assign different index values for the same device each time you reconnect it. To make sure that an MPD output (and you can configure multiple outputs) is always using the same device, you want to assign permanent index values to each device.
+But this Arch forum thread tip https://bbs.archlinux.org/viewtopic.php?id=282767 by *Forum Moderator* does supposedly work:
 
-To assign permanent index values, you need to set them in the `snd-usb-audio`` module options."
-
-==== Steps
-
-. Run `lsusb` and note the **ID**s:
+Note: When doing `lsusb`, the first **id** is the vendor id or *vid* and the second id is the product id or **pid**. 
 
 ```bash
-kurt@kurt-Airtop3:~$ lsusb
-Bus 006 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
-Bus 002 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-Bus 005 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
-Bus 003 Device 005: ID 041e:3278 Creative Technology, Ltd Sound Blaster X4
-Bus 003 Device 004: ID b58e:9e84 Blue Microphones Yeti Stereo Microphone
-Bus 003 Device 003: ID 056e:00fd Elecom Co., Ltd M-XT4DRBK EX-G Wireless Optical TrackBall
-Bus 003 Device 007: ID 0403:6014 Future Technology Devices International, Ltd FT232H Single HS USB-UART/FIFO IC
-Bus 003 Device 008: ID 0424:4041 Microchip Technology, Inc. (formerly SMSC) Hub and media card controller
-Bus 003 Device 006: ID 0424:2640 Microchip Technology, Inc. (formerly SMSC) USB 2.0 Hub
-Bus 003 Device 002: ID 046d:c52b Logitech, Inc. Unifying Receiver
-Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-Bus 004 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
-Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-
+options snd_usb_audio vid=$VIDOFMAIN$,$VIDOFWEBCAM$ pid=$PIDOFMAIN$,$PIDOFWEBCAM$ index=-1,-2
+options snd_hda_intel index=-2,-2
 ```
 
-The first **id** is the vendor id or *vid* and the second id is the product id or **pid**. 
-
-* For the **Creative Technology, Ltd Sound Blaster X4**: `vid = 0x041e` and  `pid = 0x3278`. 
-* For the Yeti microphone: `vid = 0xb58e` and `pid = 0x9e84`. 
-
-Now we can assign their sound card indexes as **1** and **2** by adding this line in `/etc/modprobe.d/alsabase.conf`:
+He alternately suggested this technique:
 
 ```bash
-options snd-usb-audio index=1,2 vid=0x041e,0xb58e pid=0x3278,0x9e84
-```
-
-Comment: Empirically I found the line above had to come first before these other USB sound card entries, which can probably be eliminated (if the X4 and/or Yeti are kept plugged in):
-
-```bash
-options snd-usb-caiaq index=-2
-options snd-usb-ua101 index=-2
-options snd-usb-us122l index=-2
-options snd-usb-usx2y index=-2
+defaults.pcm.!card "Device"; # The override operation mode is necessary here, because of
+defaults.ctl.!card "Device"; # different value types.
 ```
 
 See also:
 
-* https://www.alsa-project.org/wiki/Documentation
 * https://wiki.archlinux.org/title/Advanced_Linux_Sound_Architecture#Set_the_default_sound_card
 * https://alsa.opensrc.org/MultipleCards#The_newer_.22slots.3D.22_method
 
