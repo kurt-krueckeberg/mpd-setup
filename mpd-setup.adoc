@@ -67,16 +67,39 @@ $ Sgit submodule update --init –recursive
 The steps given in https://notes.maxie.xyz/audio/bit-perfect-hi-res-audio-player-on-linux-with-mpd.html#permanent-index-value-for-the-sound-card-recommended[permanent index value for the sound card] section of
 https://notes.maxie.xyz/audio/bit-perfect-hi-res-audio-player-on-linux-with-mpd.html[Bit-Perfect Hi-Res Audio Player on Linux with MPD] didn't work for me.
 
-But this Arch forum thread tip https://bbs.archlinux.org/viewtopic.php?id=282767 by *Forum Moderator* does supposedly work:
+But this Arch forum thread comment by *V1del* at https://bbs.archlinux.org/viewtopic.php?id=282767 suggested using  `index=-1.-2` and the `vid` and `pid` obtained from running `lsusb`.
 
-Note: When doing `lsusb`, the first **id** is the vendor id or *vid* and the second id is the product id or **pid**. 
+The output of `lsusb` has two hex identifiers: first hex number is the **vendor id** or *vid* and the second hex value is the product id or **pid**. 
+
+The results of `lsub`:
 
 ```bash
-options snd_usb_audio vid=$VIDOFMAIN$,$VIDOFWEBCAM$ pid=$PIDOFMAIN$,$PIDOFWEBCAM$ index=-1,-2
-options snd_hda_intel index=-2,-2
+kurt@kurt-Airtop3:~$ lsusb
+Bus 006 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 005 Device 002: ID 1058:25e1 Western Digital Technologies, Inc. My Passport (WD20NMVW)
+Bus 005 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 002 Device 005: ID b58e:9e84 Blue Microphones Yeti Stereo Microphone
+Bus 002 Device 004: ID 041e:3278 Creative Technology, Ltd Sound Blaster X4
+Bus 002 Device 003: ID 046d:c52b Logitech, Inc. Unifying Receiver
+Bus 002 Device 007: ID 0403:6014 Future Technology Devices International, Ltd FT232H Single HS USB-UART/FIFO IC
+Bus 002 Device 008: ID 0424:4041 Microchip Technology, Inc. (formerly SMSC) Hub and media card controller
+Bus 002 Device 006: ID 0424:2640 Microchip Technology, Inc. (formerly SMSC) USB 2.0 Hub
+Bus 002 Device 002: ID 256f:c652 3Dconnexion Universal Receiver
+Bus 002 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 004 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 ```
 
-He alternately suggested this technique:
+Using the information for the *Creative Technology, Ltd Sound Blaster X4* and the *Blue Microphones Yeti Stereo Microphone*, and following the Arch form advice, I altered `/etc/modprobe.d/als`
+```bash
+options snd_usb_audio vid=0x041e,0xb58e pid=0x3278,0x9e84 index=-1,-2
+options snd-hda-intel index=-2,-2 dmic_detect=0 power_save=0 power_save_controller=N
+```
+
+Comment: This seemed to work.
+
+Note: He alternately suggested this technique:
 
 ```bash
 defaults.pcm.!card "Device"; # The override operation mode is necessary here, because of
