@@ -69,7 +69,7 @@ https://notes.maxie.xyz/audio/bit-perfect-hi-res-audio-player-on-linux-with-mpd.
 
 But this Arch forum thread comment by *V1del* at https://bbs.archlinux.org/viewtopic.php?id=282767 suggested using  `index=-1.-2` and the `vid` and `pid` obtained from running `lsusb`.
 
-The output of `lsusb` has two hex identifiers: first hex number is the **vendor id** or *vid* and the second hex value is the product id or **pid**. 
+The output of `lsusb` has two hex identifiers: first hex number is the **vendor id** or *vid*, and the second hex value is the product id or **pid**. 
 
 The results of `lsub`:
 
