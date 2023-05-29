@@ -1,10 +1,20 @@
-:stylesheet: /home/kurt/asciidoc-skins/css/material-green.css
+:stylesheet: /home/kurt/asciidoctor-skins/css/boot-darkly.css
 
 = MPD and Bit-Perfect Audio Setup
 
 == Testing Bit Rate of Current Configuration
 
-To test the bit rate, you can do `sudo cat /proc/asound/card0/pcm0p/sub0/hw_params`, if `card0` is your sound card; or `sudo cat /proc/asound/card1/pcm0p/sub0/hw_params` if `card1` is your sound card.
+To test the current bit rate, use
+
+```bash
+sudo cat /proc/asound/card0/pcm0p/sub0/hw_params
+```
+
+If your sound card is not `card0` but rather `card1`, use
+
+```bash
+sudo cat /proc/asound/card1/pcm0p/sub0/hw_params
+```
 
 == MPD User's Manual
 

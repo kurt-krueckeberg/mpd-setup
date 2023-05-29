@@ -7,66 +7,348 @@
 <meta name="generator" content="Asciidoctor 2.0.18">
 <title>MPD and Bit-Perfect Audio Setup</title>
 <style>
-/* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Based on Darkly from Bootswatch (https://bootswatch.com/darkly/) */
+@import url("//fonts.googleapis.com/css?family=Lato:400,700,400italic");
 
-@import url(//fonts.googleapis.com/css?family=Noto+Sans);
-@import url(https://cdn.jsdelivr.net/gh/asciidoctor/asciidoctor@2.0/data/stylesheets/asciidoctor-default.css); /* Default asciidoc style framework - important */
-
-/* CUSTOMISATIONS */
-/* Change the values in root for quick customisation. If you want even more fine grain... venture further. */
-
-:root{
---maincolor:#FFFFFF;
---primarycolor:#4CAF50; /* Green 500 */
---secondarycolor:#ba3925;
---tertiarycolor: #186d7a;
---sidebarbackground:#1B5E20; /* Green 900 */
---linkcolor:#A5D6A7; /* Green 200 */
---linkcoloralternate:#f44336;
---white:#FFFFFF;
---black:#000000;
+/* document body (contains all content) */
+body {
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.42857143;
+  color: #ffffff;
+  background-color: #222222;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
-body{font-family: "Noto Sans",sans-serif;}
+/* document header (contains title etc) */
+#header {
+  width: 100%;
+}
+#header>h1 {
+  border-bottom: 1px solid #ddddd8;
+  padding-bottom: 8px;
+}
 
-#header{background-color:var(--primarycolor); padding:25px;max-width: none;}
-#footer{background-color: var(--sidebarbackground);}
-h1,h2,h3{background-color:var(--primarycolor);color:var(--white) !important;font-family:"Noto Sans",sans-serif;text-decoration:none;padding:10px;}
-h4,h5,h6{color:var(--primarycolor);}
-.title{color:var(--sidebarbackground) !important;font-family:"Noto Sans",sans-serif;font-style: normal; font-weight: normal;}
-p{font-family: "Noto Sans",sans-serif ! important}
-#toc.toc2 a:link{color:white;}
+/* headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.1;
+  color: inherit;
+}
+h1,
+h2,
+h3 {
+  margin-top: 21px;
+  margin-bottom: 10.5px;
+}
+h4,
+h5,
+h6 {
+  margin-top: 10.5px;
+  margin-bottom: 10.5px;
+}
+h1 {
+/*   font-size: 39px; */
+  font-size: 4em;
+}
+h2 {
+  font-size: 32px;
+}
+h3 {
+  font-size: 26px;
+}
+h4 {
+  font-size: 19px;
+}
+h5 {
+  font-size: 15px;
+}
+h6 {
+  font-size: 13px;
+}
 
+/* plain paragraph text */
+.paragraph {
+/*   font-family: sans-serif; */
+  margin: 0 0 10.5px;
+}
+p {
+/*   font-family: sans-serif; */
+  margin: 0 0 10.5px;
+}
+
+/* blockquote text */
+.quoteblock {
+  font-style: italic;
+}
+blockquote {
+  padding: 10.5px 21px;
+  margin: 0 0 21px;
+  font-size: 18.75px;
+  border-left: 5px solid #464545;
+}
+blockquote p:last-child,
+blockquote ul:last-child,
+blockquote ol:last-child {
+  margin-bottom: 0;
+}
+.blockquote-reverse,
+blockquote.pull-right {
+  padding-right: 15px;
+  padding-left: 0;
+  border-right: 5px solid #464545;
+  border-left: 0;
+  text-align: right;
+}
+.blockquote-reverse footer:before,
+blockquote.pull-right footer:before,
+.blockquote-reverse small:before,
+blockquote.pull-right small:before,
+.blockquote-reverse .small:before,
+blockquote.pull-right .small:before {
+  content: '';
+}
+.blockquote-reverse footer:after,
+blockquote.pull-right footer:after,
+.blockquote-reverse small:after,
+blockquote.pull-right small:after,
+.blockquote-reverse .small:after,
+blockquote.pull-right .small:after {
+  content: '\00A0 \2014';
+}
+
+/* blockquote attribution text */
+.attribution,
+.cite,
+blockquote footer,
+blockquote small,
+blockquote .small {
+  display: block;
+  font-style: normal;
+  line-height: 1.42857143;
+  color: #999999;
+}
+.attribution:before,
+blockquote footer:before,
+blockquote small:before,
+blockquote .small:before {
+  content: '\2014 \00A0';
+}
+
+/* unordered list */
+ul, ol {
+  margin-top: 0;
+  margin-bottom: 10.5px;
+}
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+  margin-bottom: 0;
+}
+
+
+/* links */
 a {
+  color: rgb(12, 227, 172);
+  background-color: transparent;
   text-decoration: none;
-  color: var(--linkcolor);
 }
-a:hover {
-  color: var(--sidebarbackground);
+a:hover,
+a:focus {
+  color: #0ce3ac;
+  text-decoration: underline;
 }
-.quoteblock blockquote::before {
-  color: var(--linkcolor);
-}
-mark {
-  color: var(--white);
-  background-color: var(--linkcolor);
+a:focus {
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
 }
 
-/* Card styling */
-.sect1{border-bottom:1px solid grey;border-radius:8px;}
+/* horizontal rules */
+hr {
+  margin-top: 21px;
+  margin-bottom: 21px;
+  border: 0;
+  border-top: 1px solid #464545;
+}
 
-/* Table styles */
-th{background-color: var(--linkcolor);color:#FFFFFF;}
+/* table */
+table {
+  background-color: transparent;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 21px;
+  border-collapse: collapse;
+}
+table col[class*="col-"] {
+  position: static;
+  float: none;
+  display: table-column;
+}
+table td[class*="col-"],
+table th[class*="col-"] {
+  position: static;
+  float: none;
+  display: table-cell;
+}
 
-#toc.toc2{background-color:var(--sidebarbackground);color:white !important;}
-#toc.toc2.a{color:var(--white);}
-#toc.toc2.a:active{color:var(--white) !important;}
-#toc.toc2.a:visited{color:var(--white) !important;}
-#toctitle{color:white;font-size: 16px;}
+/* table caption */
+caption {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  color: #999999;
+  text-align: left;
+}
 
-/* Responsiveness fixes */
+/* table header row */
+thead {
+  border-bottom: 2px solid #464545;
+}
+
+/* table header cell */
+th {
+  text-align: left;
+  padding-left: 8px;
+}
+
+/* table footer */
+tfoot {
+  color: #807F81;
+  border-top: 1px solid #464545;
+}
+
+/* table cell */
+td {
+  border-top: 1px solid #464545;
+}
+td p {
+  margin: auto;
+  padding: 8px;
+}
+
+/* table body */
+tbody > tr:nth-of-type(odd) {
+  background-color: #3d3d3d;
+}
+tbody > tr:hover {
+  background-color: #464545;
+}
+
+/* inline code */
+code,
+kbd,
+pre,
+samp {
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+}
+kbd {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #ffffff;
+  background-color: #333333;
+  border-radius: 0;
+  -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+          box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+kbd kbd {
+  padding: 0;
+  font-size: 100%;
+  font-weight: bold;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+pre {
+  display: block;
+  padding: 10px;
+  margin: 0 0 10.5px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  word-break: break-all;
+  word-wrap: break-word;
+  color: #303030;
+  background-color: #ebebeb;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+}
+pre code {
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+  white-space: pre-wrap;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+/* image */
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+/* footer section */
+#footer {
+  margin-top: 22px;
+  padding: 14px 16px;
+  color: white;
+  background-color: #375A7F;
+}
+
+/* responsiveness fixes */
 video {
   max-width: 100%;
+}
+
+/* table of Contents sidebar */
+#toctitle {
+  color: #222222;
+}
+
+#toc ul {
+  display: inline;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#toc li {
+  display: block;
+}
+
+#toc a {
+  background-color: rgb(55, 90, 127);
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+#toc li a:hover {
+  background-color: rgb(40, 65, 91);
+  text-decoration: none;
+}
+
+#toc:after {
+  content: " ";
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
 }
 
 @media all and (max-width: 600px) {
@@ -86,7 +368,7 @@ table {
 <h2 id="_testing_bit_rate_of_current_configuration">Testing Bit Rate of Current Configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To test bit rate, yo ca do:</p>
+<p>To test the current bit rate, use</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -94,12 +376,17 @@ table {
 </div>
 </div>
 <div class="paragraph">
-<p>Referencee: <a href="https://www.24bit96.com/hifi-music-server/bitperfect-linux-with-mpd.html" class="bare">https://www.24bit96.com/hifi-music-server/bitperfect-linux-with-mpd.html</a>.</p>
+<p>If your sound card is not <code>card0</code> but rather <code>card1</code>, use</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">sudo cat /proc/asound/card1/pcm0p/sub0/hw_params</code></pre>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_official_users_manual">Official User&#8217;s Manual</h2>
+<h2 id="_mpd_users_manual">MPD User&#8217;s Manual</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>MPD <a href="https://mpd.readthedocs.io/en/stable/user.html">User&#8217;s Manual</a></p>
@@ -109,21 +396,25 @@ table {
 <div class="sect1">
 <h2 id="_general_setup">General Setup</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_default_config_file_locations">Default Config File Locations</h3>
 <div class="paragraph">
-<p>You can have both a system-wide setup and per-user setups. The system-wide configuration is in <code>/etc/mpd.conf</code>, and the user config is in
-<code>~/.config/mpd</code>/. You can optionally specify a different configure file when starting mpd from the command line:</p>
+<p>You can have both a system-wide setup and per-user setups. The system-wide configuration is <code>/etc/mpd.conf</code>, and the user config is <code>~/.config/mpd</code>/. You can optionally specify a different configure file when starting mpd from the command line:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ mpd custom-mpd-conhfig-file</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ mpd custom-mpd-config-file</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>If none is given, then <code>~/.config/mpd/mpd.confg</code> is used.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_the_example_config_file">The Example Config File</h3>
 <div class="paragraph">
-<p>MPD’s settings are explained on the
-<a href="https://wiki.archlinux.org/title/Music_Player_Daemon#Audio_configuration">Arch website</a>. You can begin with the example settings file:</p>
+<p>A good overview of MPD’s settings is available on the
+<a href="https://wiki.archlinux.org/title/Music_Player_Daemon#Audio_configuration">Arch website</a>. You can start with the example config settings file:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -132,13 +423,16 @@ table {
 $ cp /usr/share/doc/mpd/mpdconf.example ~/.config/mpd/mpd.conf</code></pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_playlists_directory">Playlists Directory</h3>
 <div class="paragraph">
-<p>If playlists are enabled in the configuration, the specified playlist
-directory must be created:</p>
+<p>If playlists are enabled in the configuration, the specified playlist directory must be created:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">$ mkdir ~/.config/mpd/playlists</code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -172,80 +466,65 @@ way:
 
 $ cd mpd-configure
 
-$ Sgit submodule update --init –recursive</code></pre>
+$ git submodule update --init –recursive</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_creating_a_permanent_index_for_the_sound_card">Creating a Permanent Index for the Sound Card</h3>
 <div class="paragraph">
-<p>You should create a <a href="https://notes.maxie.xyz/audio/bit-perfect-hi-res-audio-player-on-linux-with-mpd.html#permanent-index-value-for-the-sound-card-recommended">permanent index value for the sound card</a> section of
-<a href="https://notes.maxie.xyz/audio/bit-perfect-hi-res-audio-player-on-linux-with-mpd.html">Bit-Perfect Hi-Res Audio Player on Linux with MPD</a> because as it explains:</p>
+<p>The steps given in <a href="https://notes.maxie.xyz/audio/bit-perfect-hi-res-audio-player-on-linux-with-mpd.html#permanent-index-value-for-the-sound-card-recommended">permanent index value for the sound card</a> section of
+<a href="https://notes.maxie.xyz/audio/bit-perfect-hi-res-audio-player-on-linux-with-mpd.html">Bit-Perfect Hi-Res Audio Player on Linux with MPD</a> didn&#8217;t work for me.</p>
 </div>
 <div class="paragraph">
-<p>"Every time you connect your DAC to your computer, the generic USB audio driver <code>snd-usb-audio</code> assigns an index
-value to the DAC&#8217;s sound card. You need to specify this value in the output configuration of MPD. When you have multiple audio devices and you connect and disconnect them often, the <code>snd-usb-audio</code> module might assign different index values for the same device each time you reconnect it. To make sure that an MPD output (and you can configure multiple outputs) is always using the same device, you want to assign permanent index values to each device.</p>
+<p>But this Arch forum thread comment by <strong>V1del</strong> at <a href="https://bbs.archlinux.org/viewtopic.php?id=282767" class="bare">https://bbs.archlinux.org/viewtopic.php?id=282767</a> suggested using  <code>index=-1.-2</code> and the <code>vid</code> and <code>pid</code> obtained from running <code>lsusb</code>.</p>
 </div>
 <div class="paragraph">
-<p>To assign permanent index values, you need to set them in the <code>snd-usb-audio`</code> module options."</p>
+<p>The output of <code>lsusb</code> has two hex identifiers: first hex number is the <strong>vendor id</strong> or <strong>vid</strong>, and the second hex value is the product id or <strong>pid</strong>.</p>
 </div>
-<div class="sect3">
-<h4 id="_steps">Steps</h4>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Run <code>lsusb</code> and note the <strong>ID</strong>s:</p>
-</li>
-</ol>
+<div class="paragraph">
+<p>The results of <code>lsub</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">kurt@kurt-Airtop3:~$ lsusb
 Bus 006 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
-Bus 002 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 005 Device 002: ID 1058:25e1 Western Digital Technologies, Inc. My Passport (WD20NMVW)
 Bus 005 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
-Bus 003 Device 005: ID 041e:3278 Creative Technology, Ltd Sound Blaster X4
-Bus 003 Device 004: ID b58e:9e84 Blue Microphones Yeti Stereo Microphone
-Bus 003 Device 003: ID 056e:00fd Elecom Co., Ltd M-XT4DRBK EX-G Wireless Optical TrackBall
-Bus 003 Device 007: ID 0403:6014 Future Technology Devices International, Ltd FT232H Single HS USB-UART/FIFO IC
-Bus 003 Device 008: ID 0424:4041 Microchip Technology, Inc. (formerly SMSC) Hub and media card controller
-Bus 003 Device 006: ID 0424:2640 Microchip Technology, Inc. (formerly SMSC) USB 2.0 Hub
-Bus 003 Device 002: ID 046d:c52b Logitech, Inc. Unifying Receiver
-Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 002 Device 005: ID b58e:9e84 Blue Microphones Yeti Stereo Microphone
+Bus 002 Device 004: ID 041e:3278 Creative Technology, Ltd Sound Blaster X4
+Bus 002 Device 003: ID 046d:c52b Logitech, Inc. Unifying Receiver
+Bus 002 Device 007: ID 0403:6014 Future Technology Devices International, Ltd FT232H Single HS USB-UART/FIFO IC
+Bus 002 Device 008: ID 0424:4041 Microchip Technology, Inc. (formerly SMSC) Hub and media card controller
+Bus 002 Device 006: ID 0424:2640 Microchip Technology, Inc. (formerly SMSC) USB 2.0 Hub
+Bus 002 Device 002: ID 256f:c652 3Dconnexion Universal Receiver
+Bus 002 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 Bus 004 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
-Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub</code></pre>
+Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The first <strong>id</strong> is the vendor id or <strong>vid</strong> and the second id is the product id or <strong>pid</strong>.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>For the <strong>Creative Technology, Ltd Sound Blaster X4</strong>: <code>vid = 0x041e</code> and  <code>pid = 0x3278</code>.</p>
-</li>
-<li>
-<p>For the Yeti microphone: <code>vid = 0xb58e</code> and <code>pid = 0x9e84</code>.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Now we can assign their sound card indexes as <strong>1</strong> and <strong>2</strong> by adding this line in <code>/etc/modprobe.d/alsabase.conf</code>:</p>
+<p>Using the information for the <strong>Creative Technology, Ltd Sound Blaster X4</strong> and the <strong>Blue Microphones Yeti Stereo Microphone</strong>, and following the Arch form advice, I altered <code>/etc/modprobe.d/als</code></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">options snd-usb-audio index=1,2 vid=0x041e,0xb58e pid=0x3278,0x9e84</code></pre>
+<pre class="highlight"><code class="language-bash" data-lang="bash">options snd_usb_audio vid=0x041e,0xb58e pid=0x3278,0x9e84 index=-1,-2
+options snd-hda-intel index=-2,-2 dmic_detect=0 power_save=0 power_save_controller=N</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Comment: Empirically I found the line above had to come first before these other USB sound card entries, which can probably be eliminated (if the X4 and/or Yeti are kept plugged in):</p>
+<p>Note: I also added this ~/.asoundrc file:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">options snd-usb-caiaq index=-2
-options snd-usb-ua101 index=-2
-options snd-usb-us122l index=-2
-options snd-usb-usx2y index=-2</code></pre>
+<pre class="highlight"><code class="language-bash`" data-lang="bash`">defaults.pcm.card 0
+defaults.ctl.card 0
+````
+
+```bash
+defaults.pcm.!card "Device"; # The override operation mode is necessary here, because of
+defaults.ctl.!card "Device"; # different value types.</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -253,9 +532,6 @@ options snd-usb-usx2y index=-2</code></pre>
 </div>
 <div class="ulist">
 <ul>
-<li>
-<p><a href="https://www.alsa-project.org/wiki/Documentation" class="bare">https://www.alsa-project.org/wiki/Documentation</a></p>
-</li>
 <li>
 <p><a href="https://wiki.archlinux.org/title/Advanced_Linux_Sound_Architecture#Set_the_default_sound_card" class="bare">https://wiki.archlinux.org/title/Advanced_Linux_Sound_Architecture#Set_the_default_sound_card</a></p>
 </li>
@@ -265,7 +541,6 @@ options snd-usb-usx2y index=-2</code></pre>
 </ul>
 </div>
 </div>
-</div>
 <div class="sect2">
 <h3 id="_configuring_client_connections_and_inputs">Configuring Client Connections and Inputs</h3>
 <div class="paragraph">
@@ -273,6 +548,12 @@ options snd-usb-usx2y index=-2</code></pre>
 </div>
 <div class="paragraph">
 <p>And read about client connections config see; <a href="file:///usr/share/doc/mpd/html/user.html#client-connections" class="bare">file:///usr/share/doc/mpd/html/user.html#client-connections</a></p>
+</div>
+<div class="sect3">
+<h4 id="_sidebar_how_to_share_files_between_a_linux_and_windows_computer">Sidebar: How to share files between a Linux and Windows computer</h4>
+<div class="paragraph">
+<p><a href="https://www.computerhope.com/issues/ch001636.htm">How to share files between a Linux and Windows computer</a></p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_mpd_setup_and_usage_links">MPD Setup and Usage Links</h4>
@@ -307,20 +588,31 @@ setup. Goes into details.</p>
 <div class="sect2">
 <h3 id="_mpd_clients">MPD Clients</h3>
 <div class="paragraph">
-<p><a href="https://mpd.fandom.com/wiki/Clients" class="bare">https://mpd.fandom.com/wiki/Clients</a></p>
+<p><a href="https://mpd.fandom.com/wiki/Clients">List of Clients</a> from the MPD website.</p>
 </div>
 <div class="ulist">
 <ul>
+<li>
+<p><a href="http://ompd.pl/">O!MPD</a> is a PHP-base client.</p>
+</li>
 <li>
 <p><a href="https://www.youtube.com/watch?v=hW8W6VHskP8">Configure Music Player Daemon and ncmpcpp</a></p>
 </li>
 <li>
 <p><a href="https://www.youtube.com/watch?v=_GLOKTd-8tA&amp;t=75s">Ncmpcpp: The Best MPD Client With The Worst Name</a></p>
 </li>
-<li>
-<p><a href="https://www.youtube.com/watch?v=hksM3xqOU4w">My music setup with mpd, ncmpcpp | Music server in Linux | How to configure mp</a></p>
-</li>
 </ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ncmpcpp">Ncmpcpp</h3>
+<div class="paragraph">
+<p>Copy default configuration:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ cp /usr/share/doc/ncmpcpp/config ~/.config/ncmpcpp/</code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -334,7 +626,7 @@ setup. Goes into details.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-05-08 16:03:03 -0400
+Last updated 2023-05-29 07:26:33 -0400
 </div>
 </div>
 </body>
