@@ -130,7 +130,6 @@ todo: Read the overview articles below.
 
 And read about client connections config see; file:///usr/share/doc/mpd/html/user.html#client-connections
 
-
 ==== Sidebar: How to share files between a Linux and Windows computer
 
 https://www.computerhope.com/issues/ch001636.htm[How to share files between a Linux and Windows computer]
