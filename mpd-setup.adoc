@@ -124,6 +124,10 @@ See also:
 * https://wiki.archlinux.org/title/Advanced_Linux_Sound_Architecture#Set_the_default_sound_card
 * https://alsa.opensrc.org/MultipleCards#The_newer_.22slots.3D.22_method
 
+=== Using Remote Shared Drive
+
+Read about the `file://protocol` setting in the MPD document and example configuration.
+
 === Configuring Client Connections and Inputs
 
 todo: Read the overview articles below.
