@@ -107,7 +107,6 @@ options snd_usb_audio vid=0x041e,0xb58e pid=0x3278,0x9e84 index=-1,-2
 options snd-hda-intel index=-2,-2 dmic_detect=0 power_save=0 power_save_controller=N
 ```
 
-
 Note: I also added this ~/.asoundrc file:
 
 ```bash`
