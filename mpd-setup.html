@@ -518,12 +518,13 @@ options snd-hda-intel index=-2,-2 dmic_detect=0 power_save=0 power_save_controll
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-bash`" data-lang="bash`">defaults.pcm.card 0
-defaults.ctl.card 0
-````
-
-```bash
-defaults.pcm.!card "Device"; # The override operation mode is necessary here, because of
+<pre class="highlight"><code class="language-bash" data-lang="bash">defaults.pcm.card 0
+defaults.ctl.card 0</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">defaults.pcm.!card "Device"; # The override operation mode is necessary here, because of
 defaults.ctl.!card "Device"; # different value types.</code></pre>
 </div>
 </div>
@@ -539,6 +540,12 @@ defaults.ctl.!card "Device"; # different value types.</code></pre>
 <p><a href="https://alsa.opensrc.org/MultipleCards#The_newer_.22slots.3D.22_method" class="bare">https://alsa.opensrc.org/MultipleCards#The_newer_.22slots.3D.22_method</a></p>
 </li>
 </ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_using_remote_shared_drive">Using Remote Shared Drive</h3>
+<div class="paragraph">
+<p>Read about the <code><a href="file://protocol" class="bare">file://protocol</a></code> setting in the MPD document and example configuration.</p>
 </div>
 </div>
 <div class="sect2">
@@ -626,7 +633,7 @@ setup. Goes into details.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-05-29 07:26:33 -0400
+Last updated 2023-06-12 15:02:09 -0400
 </div>
 </div>
 </body>
