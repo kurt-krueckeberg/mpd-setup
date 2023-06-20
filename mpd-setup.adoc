@@ -75,7 +75,7 @@ $ git clone git@gitlab.com:sonida/mpd-configure.git
 
 $ cd mpd-configure
 
-$ git submodule update --init –recursive
+$ git submodule update --init -–recursive
 ----
 
 === Creating a Permanent Index for the Sound Card
