@@ -1,4 +1,4 @@
-:stylesheet: /home/kurt/asciidoctor-skins/css/boot-darkly.css
+:stylesheet: /home/kurt/asciidoctor-skins/css/dark.css
 
 = MPD and Bit-Perfect Audio Setup
 
