@@ -129,10 +129,17 @@ defaults.pcm.!card "Device"; # The override operation mode is necessary here, be
 defaults.ctl.!card "Device"; # different value types.
 ----
 
-See also:
+[note]
+====
+None of these things seemed to work!
+====
 
-* https://wiki.archlinux.org/title/Advanced_Linux_Sound_Architecture#Set_the_default_sound_card
-* https://alsa.opensrc.org/MultipleCards#The_newer_.22slots.3D.22_method
+=== Restarting ALSA
+
+[source, bash]
+----
+sudo alsactl restore
+----
 
 === Using Remote Shared Drive
 
