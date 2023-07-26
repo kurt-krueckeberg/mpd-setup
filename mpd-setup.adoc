@@ -6,7 +6,7 @@
 
 To test the current bit rate, try these methods.
 
-== Method 1
+=== Method 1
 
 [source,bash]
 ----
@@ -20,7 +20,7 @@ If your sound card is not `card0` but rather `card1`, use
 sudo cat /proc/asound/card1/pcm0p/sub0/hw_params
 ----
 
-== Method 2
+=== Method 2
 
 If you playback card is, say, `card1`, you can view the contents of `/proc/asound/card1/stream0`:
 ```
