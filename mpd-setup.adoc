@@ -306,14 +306,41 @@ https://mpd.fandom.com/wiki/Clients[List of Clients] from the MPD website.
 * https://www.youtube.com/watch?v=hW8W6VHskP8[Configure Music Player Daemon and ncmpcpp]
 * https://www.youtube.com/watch?v=_GLOKTd-8tA&t=75s[Ncmpcpp: The Best MPD Client With The Worst Name]
 
-=== Ncmpcpp
+=== Ncmpcpp Client
 
-Copy default configuration:
+Ncmpcpp is a curses MPD client. You can copy its default configuration by doing:
 
 [source,bash]
 ----
 $ cp /usr/share/doc/ncmpcpp/config ~/.config/ncmpcpp/
 ----
+
+ncmpcpp configuration settings can be viewed by:
+
+```bash
+man ncmpcpp
+```
+When mpd is on another host, mpd_host  should be set to the **IP address** and **mpd_music_dir** should be set to its
+music directory. If the music directory is on a network share, for example, a samba share, then use something like:
+
+```
+mpd_music_dir = “smb://192.168.0.27/Public Files”
+```
+
+where the IP addressis  that of, say, a mini PCd “Public Files” is from `/etc/samba/shares.conf`, the `[Public Files]` entry.
+
+=== Ymuse
+
+To install:
+
+```bash
+sudo aptitude install -y ymuse
+```
+
+Ymuse preferences allow you to disconnect and reconnenct to the mpd host, which can be specified as an
+**IP address**. You do not have to specify the port or music directory, etc.
+
+=== ampd Web MPD Client
 
 === MPD Forum
 
