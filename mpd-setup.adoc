@@ -342,6 +342,12 @@ Ymuse preferences allow you to disconnect and reconnenct to the mpd host, which 
 
 === ampd Web MPD Client
 
+Installation instructions are in its github: link:https://github.com/rain0r/ampd/blob/master/docs/install.md[Github install.md]
+
+=== M.A.L.P. Android App
+
+It is available on Gitlab. See its wiki link:https://github.com/gateship-one/malp/-/wikis/FAQ[FAQs].
+
 === MPD Forum
 
 <https://github.com/MusicPlayerDaemon/MPD/discussions>
